@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" name = 'symbol'>
+        <br>
+        <button type="submit">Search</button>
+    </form>
+
+
+    {% if symbol %}
+    <!-- {{symbol}} {{data}} -->
+    <h2>The last traded price was :  {{ last_trade_price }} </h2>
+    <br>
+    <table>
+        <tr>
+          <th>SYMBOL</th>
+          <th>Date</th>
+          <th>Open</th>
+          <th>High</th>
+          <th>Low</th>
+          <th>Close</th>
+        </tr>
+        <tr>
+            {%  for d in data %}
+          <td>{{ d }}</td>
+          {% endfor %}
+        </tr>
+        
+      </table>
+
+      <h2>price change today :  {{ price_change_today }} </h2>
+
+
+    {% endif %}
+</body>
+</html>
